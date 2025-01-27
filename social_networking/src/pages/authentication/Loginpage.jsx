@@ -1,48 +1,68 @@
 import React, { useState } from "react";
-import { ErrorMessage, Field,Form, Formik,validationSchema} from "formik";
-import { TextField } from "@mui/material";
+import { ErrorMessage, Field,Form, Formik} from "formik";
+import { TextField, Button } from "@mui/material";
 import * as Yup from "yup"
 
-const validationSchema = {
-  email: Yup.string().email("Invalid email").required("Email is required")};
+const validationSchema = Yup.object({
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string()
+    .min(12, "Password must have 12 characters")
+    .required("Password required"),
+});
 
 const initialValues = {
   email: "",
   password: "" }; // needed  for email and password for login 
 
-password:Yup.string().min(12,"Password must have 12 characters").required("Password required")
 
-
-const Loginpage = () => {
-  const [formValue, setFormValue] = useState();
-  const handleSubmit = (values) => {
-    console.log("handle submit",values);
-    // logic here for api
-  };
-  return (
-    <Formik
-      onSubmit={handleSubmit}
-      //validationSchema={validationSchema}
-      initialValues={initialValues}
-    >
-      <Form className="spacey-y-5">
-        <div className="space-y-5">
-          <div>
-            <Field
-              as={TextField}
-              name="password"
-              placeholder="password"
-              type="password"
-              variant="outline"
+  const Loginpage = () => {
+    const handleSubmit = (values) => {
+      console.log("handle submit", values);
+    };
+  
+    return (
+      <Formik
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+      >
+        {() => (
+          <Form className="space-y-5">
+            <div>
+              <Field
+                as={TextField}
+                name="email"
+                placeholder="Enter your email"
+                type="email"
+                variant="outlined"
+                fullWidth
+              />
+              <ErrorMessage name="email" component="div" className="text-red-500" />
+            </div>
+            <div>
+              <Field
+                as={TextField}
+                name="password"
+                placeholder="Enter your password"
+                type="password"
+                variant="outlined"
+                fullWidth
+              />
+              <ErrorMessage name="password" component="div" className="text-red-500" />
+            </div>
+            <Button
+              sx={{ padding: ".8rem 0rem" }}
               fullWidth
-            />
-            <ErrorMessage name="password" component ={"div"} className="text-red-500"/>
-          </div>
-        </div>
-      <Button sx={{padding:".8rem 0rem"}} fullWidth type ="submit">Login</Button>
-      </Form>
-    </Formik>
-  );
-};
-
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
+              Login
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    );
+  };
+  
 export default Loginpage;
