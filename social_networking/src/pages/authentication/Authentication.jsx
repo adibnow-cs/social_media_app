@@ -2,6 +2,7 @@ import { Grid, Card } from '@mui/material'; // Ensure Card is imported
 import React from 'react';
 import networking from '../../assets/images/networking.png';
 import Loginpage from './Loginpage'; // Ensure LoginPage is imported
+import Registerpage from './Registerpage';
 
 const Authentication = () => {
   return (
@@ -41,7 +42,8 @@ const Authentication = () => {
                   Bringing Cinephiles Together - Celebrate the Magic of Movies
                 </p>
               </div>
-              <Loginpage />
+              {/*<Loginpage /> */}
+              <Registerpage/>
             </Card>
           </div>
         </Grid>
