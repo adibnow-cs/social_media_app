@@ -1,6 +1,12 @@
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { TextField, Button, FormControlLabel, Radio, RadioGroup } from "@mui/material"; 
+import {
+  TextField,
+  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
@@ -8,18 +14,16 @@ const validationSchema = Yup.object({
   password: Yup.string()
     .min(12, "Password must have 12 characters")
     .required("Password required"),
-    gender: Yup.string().required("Gender is required"),
-    preferredGenre: Yup.string().required("Preferred movie genre is required"),
-    engagementStyle: Yup.string().required("Engagement style is required"),
-    filmmakingRole: Yup.string().notRequired(),
-    favoriteDecade: Yup.string().required("Favorite film decade is required"),
-    watchingStyle: Yup.string().required("Film-watching style is required"),
-  });
+  preferredGenre: Yup.string().required("Preferred movie genre is required"),
+  engagementStyle: Yup.string().required("Engagement style is required"),
+  filmmakingRole: Yup.string().notRequired(),
+  favoriteDecade: Yup.string().required("Favorite film decade is required"),
+  watchingStyle: Yup.string().required("Film-watching style is required"),
+});
 
 const initialValues = {
   email: "",
   password: "",
-  gender: "",
   preferredGenre: "",
   engagementStyle: "",
   filmmakingRole: "",
@@ -33,13 +37,17 @@ const Registerpage = () => {
   };
 
   return (
-    <Formik
-      onSubmit={handleSubmit}
-      validationSchema={validationSchema}
-      initialValues={initialValues}
+    <Formik 
+    initialValues={initialValues} 
+    validationSchema={validationSchema} 
+    onSubmit={handleSubmit}
     >
-      {({values}) => (
+      
+      {({ values ,setFieldValue }) => ( // correct way to destructure setFieldValue
         <Form className="space-y-5">
+
+        {/*First Name */}
+
           <div>
             <Field
               as={TextField}
@@ -55,6 +63,9 @@ const Registerpage = () => {
               className="text-red-500"
             />
           </div>
+
+        {/* Last Name */}
+
           <div>
             <Field
               as={TextField}
@@ -70,6 +81,9 @@ const Registerpage = () => {
               className="text-red-500"
             />
           </div>
+
+          {/* Email */}
+
           <div>
             <Field
               as={TextField}
@@ -85,6 +99,9 @@ const Registerpage = () => {
               className="text-red-500"
             />
           </div>
+
+          {/* Password */}
+
           <div>
             <Field
               as={TextField}
@@ -105,127 +122,157 @@ const Registerpage = () => {
           <div>
             <label>Preffered Movie Genre</label>
             <RadioGroup
-            row
-            name="preferredGenre"
-            value={values.preferredGenre}
-            onChange={(e) => setFieldValue("prefferdGenre",e.target.value)}
+              row
+              name="preferredGenre"
+              value={values.preferredGenre}
+              onChange={(e) => setFieldValue("preferredGenre", e.target.value)}
             >
-              {["Drama", "Thriller", "Sci-Fi", "Horror", "Comedy", "Documentary", "Experimental/Indie"].map(
-                (genre) => (
-              <FormControlLabel
-              key={genre}
-              value={genre}
-              control={<Radio/>}
-              label={genre}
-              />
-                )
-              )}
+              {[
+                "Drama",
+                "Thriller",
+                "Sci-Fi",
+                "Horror",
+                "Comedy",
+                "Documentary",
+                "Experimental/Indie",
+              ].map((genre) => (
+                <FormControlLabel
+                  key={genre}
+                  value={genre}
+                  control={<Radio />}
+                  label={genre}
+                />
+              ))}
             </RadioGroup>
-            <ErrorMessage name= "preferredGenre" component="div"className="text-red-500"/>  
+            <ErrorMessage
+              name="preferredGenre"
+              component="div"
+              className="text-red-500"
+            />
           </div>
 
-        {/* Movie genre*/}
+          {/* Engagement style*/}
 
           <div>
             <label>Engagement style</label>
             <RadioGroup
-            row
-            name="engagementStyle"
-            value={values.engagementStyle}
-            onChange={(e) => setFieldValue("engagementStyle",e.target.value)}
+              row
+              name="engagementStyle"
+              value={values.engagementStyle}
+              onChange={(e) => setFieldValue("engagementStyle", e.target.value)}
             >
               <FormControlLabel
-              value="Critic"
-              control={<Radio/>}
-              label="I love analyzing & discussing films (Critic)"
+                value="Critic"
+                control={<Radio />}
+                label="I love analyzing & discussing films (Critic)"
               />
               <FormControlLabel
-              value="Creator"
-              control={<Radio/>}
-              label="I create films, scripts, or visuals (Creator)"
+                value="Creator"
+                control={<Radio />}
+                label="I create films, scripts, or visuals (Creator)"
               />
               <FormControlLabel
-              value="Both"
-              control={<Radio/>}
-              label="Both!" />
+                value="Both"
+                control={<Radio />}
+                label="Both!"
+              />
             </RadioGroup>
-            <ErrorMessage name= "engagementStyle" component="div"className="text-red-500"/>  
+            <ErrorMessage
+              name="engagementStyle"
+              component="div"
+              className="text-red-500"
+            />
           </div>
+
           {/* Filmaking role  */}
+          {values.engagementStyle === "Creator" && (
+            <div>
+              <label>Favorite Filmmaking Role 🎥</label>
+              <RadioGroup
+                row
+                name="filmmakingRole"
+                value={values.filmmakingRole}
+                onChange={(e) =>
+                  setFieldValue("filmmakingRole", e.target.value)
+                }
+              >
+                {[
+                  "Directing",
+                  "Screenwriting",
+                  "Cinematography",
+                  "Editing",
+                  "Acting",
+                  "Set Design",
+                ].map((role) => (
+                  <FormControlLabel
+                    key={role}
+                    value={role}
+                    control={<Radio />}
+                    label={role}
+                  />
+                ))}
+              </RadioGroup>
+            </div>
+          )}
+          {/* Favourite film decade*/}
 
-              <div>
-            <label>Preffered Movie Genre</label>
+          <div>
+            <label>Favorite Film Decade</label>
             <RadioGroup
-            row
-            name="preferredGenre"
-            value={values.preferredGenre}
-            onChange={(e) => setFieldValue("prefferdGenre",e.target.value)}
+              row
+              name="favoriteDecade"
+              value={values.favoriteDecade}
+              onChange={(e) => setFieldValue("favoriteDecade", e.target.value)}
             >
-              {["Drama", "Thriller", "Sci-Fi", "Horror", "Comedy", "Documentary", "Experimental/Indie"].map(
-                (genre) => (
-              <FormControlLabel
-              key={genre}
-              value={genre}
-              control={<Radio/>}
-              label={genre}
-              />
-                )
-              )}
+              {[
+              ].map((decade) => (
+                <FormControlLabel
+                  key={decade}
+                  value={decade}
+                  control={<Radio />}
+                  label={decade}
+                />
+              ))}
             </RadioGroup>
-            <ErrorMessage name= "preferredGenre" component="div"className="text-red-500"/>  
+            <ErrorMessage
+              name="favoriteDecade"
+              component="div"
+              className="text-red-500"
+            />
           </div>
-    
 
-              {/* Movie genre*/}
+          {/* Film-Watching style*/}
 
-              <div>
-            <label>Preffered Movie Genre</label>
+          <div>
+            <label>Film-Watching Style</label>
             <RadioGroup
-            row
-            name="preferredGenre"
-            value={values.preferredGenre}
-            onChange={(e) => setFieldValue("prefferdGenre",e.target.value)}
+              row
+              name="watchingStyle"
+              value={values.watchingStyle}
+              onChange={(e) => setFieldValue("watchingStyle", e.target.value)}
             >
-              {["Drama", "Thriller", "Sci-Fi", "Horror", "Comedy", "Documentary", "Experimental/Indie"].map(
-                (genre) => (
-              <FormControlLabel
-              key={genre}
-              value={genre}
-              control={<Radio/>}
-              label={genre}
-              />
-                )
-              )}
+              {[ "Theatrical Releases (Cinema Experience)",
+                "Streaming Platforms (Netflix, Prime, etc.)",
+                "Film Festivals & Indie Screenings",
+                "Physical Media (DVDs, Blu-ray, VHS)",
+              ].map((style) => (
+                <FormControlLabel
+                  key={style}
+                  value={style}
+                  control={<Radio />}
+                  label={style}
+                />
+              ))}
             </RadioGroup>
-            <ErrorMessage name= "preferredGenre" component="div"className="text-red-500"/>  
+            <ErrorMessage
+              name="watchingStyle"
+              component="div"
+              className="text-red-500"
+            />
           </div>
-    
 
-              {/* Movie genre*/}
-
-              <div>
-            <label>Preffered Movie Genre</label>
-            <RadioGroup
-            row
-            name="preferredGenre"
-            value={values.preferredGenre}
-            onChange={(e) => setFieldValue("prefferdGenre",e.target.value)}
-            >
-              {["Drama", "Thriller", "Sci-Fi", "Horror", "Comedy", "Documentary", "Experimental/Indie"].map(
-                (genre) => (
-              <FormControlLabel
-              key={genre}
-              value={genre}
-              control={<Radio/>}
-              label={genre}
-              />
-                )
-              )}
-            </RadioGroup>
-            <ErrorMessage name= "preferredGenre" component="div"className="text-red-500"/>  
-          </div>
-    
-    
+          {/* Submit Button */}
+          
           <Button
             sx={{ padding: ".8rem 0rem" }}
             fullWidth
