@@ -220,6 +220,7 @@ const Registerpage = () => {
               </RadioGroup>
             </div>
           )}
+
           {/* Favourite film decade*/}
 
           <div>
@@ -230,7 +231,11 @@ const Registerpage = () => {
               value={values.favoriteDecade}
               onChange={(e) => setFieldValue("favoriteDecade", e.target.value)}
             >
-              {[
+              {["Silent Era (1890s-1920s)",
+                "Golden Age (1930s-1950s)",
+                "New Hollywood (1960s-1980s)",
+                "Modern Blockbusters (1990s-Present)",
+                "All Eras",
               ].map((decade) => (
                 <FormControlLabel
                   key={decade}
