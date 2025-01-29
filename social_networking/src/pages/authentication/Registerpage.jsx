@@ -10,10 +10,13 @@ import {
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
+  firstName: Yup.string().required("First Name is required"),
+  lastName: Yup.string().required("Last Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
     .min(12, "Password must have 12 characters")
     .required("Password required"),
+  gender: Yup.string().required("Gender is required"), 
   preferredGenre: Yup.string().required("Preferred movie genre is required"),
   engagementStyle: Yup.string().required("Engagement style is required"),
   filmmakingRole: Yup.string().notRequired(),
@@ -22,8 +25,11 @@ const validationSchema = Yup.object({
 });
 
 const initialValues = {
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
+  gender: "",
   preferredGenre: "",
   engagementStyle: "",
   filmmakingRole: "",
