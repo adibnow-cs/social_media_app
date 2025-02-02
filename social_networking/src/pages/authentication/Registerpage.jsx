@@ -39,13 +39,13 @@ const Registerpage = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log("🚀 Form Submitted!", values);
+        console.log("Form Submitted!", values);
         alert("Form Submitted");
         setSubmitting(false);
       }}
     >
       {({ values, setFieldValue, handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>  {/* ✅ Ensure handleSubmit is attached */}
+        <Form onSubmit={handleSubmit}>  
           
           {/* First Name */}
           <Field as={TextField} name="firstName" placeholder="First name" fullWidth />
@@ -121,6 +121,7 @@ const Registerpage = () => {
 
           {/* Submit Button */}
           <Button type="submit" variant="contained" color="primary">
+            {/* Login*/}
             Register
           </Button>
         </Form>

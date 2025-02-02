@@ -3,6 +3,7 @@ import React from 'react';
 import networking from '../../assets/images/networking.png';
 import Loginpage from './Loginpage'; // Ensure LoginPage is imported
 import Registerpage from './Registerpage';
+import { Routes, Route} from 'react-router-dom';
 
 const Authentication = () => {
   return (
@@ -40,10 +41,13 @@ const Authentication = () => {
                 <h1 className="logo-center">MovieGram</h1>
                 <p className="text-center text-sm w-[70%]">
                   Bringing Cinephiles Together - Celebrate the Magic of Movies
-                </p>
-              </div>
-              {/*<Loginpage /> */}
-              <Registerpage/>
+                </p>              
+                </div>
+                <Routes>
+                  <Route path="/" element={<Loginpage />} />
+                  <Route path="/login" element={<Loginpage />} />
+                  <Route path="/register" element={<Registerpage />} />
+                </Routes>
             </Card>
           </div>
         </Grid>
