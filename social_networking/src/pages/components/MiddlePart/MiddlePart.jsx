@@ -37,9 +37,9 @@ const MiddlePart = () => {
         <div className="flex justify-center space-x-9 mt-5">
           <div className="flex items-center">
             <IconButton color="primary" onClick={handleOpenCreatePost}>
-              <VideoCallIcon />
+              <ImageIcon />
             </IconButton>
-            <span> media</span>
+            <span> Media</span>
           </div>
           <div className="flex items-center">
             <IconButton color="primary" onClick={handleOpenCreatePost}>
