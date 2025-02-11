@@ -5,6 +5,7 @@ import StoryCircle from "./StoryCircle";
 import ImageIcon from "@mui/icons-material/Image";
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import FeedIcon from '@mui/icons-material/Feed';
+import Post from "../Post/Post";
 
 const story = [11, 1, 1, 1, 1];
 const MiddlePart = () => {
@@ -55,6 +56,12 @@ const MiddlePart = () => {
           </div>
         </div>
       </Card>
+
+      {/* Post section */}
+      <div className="mt-5 space-y-5">
+        <Post/>
+
+      </div>
     </div>
   );
 };
