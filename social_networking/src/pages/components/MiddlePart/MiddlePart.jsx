@@ -8,6 +8,7 @@ import FeedIcon from '@mui/icons-material/Feed';
 import Post from "../Post/Post";
 
 const story = [11, 1, 1, 1, 1];
+const posts=[1,1,1,1,1]
 const MiddlePart = () => {
   const handleOpenCreatePost = () => {
     console.log("Open  post model ");
@@ -59,8 +60,7 @@ const MiddlePart = () => {
 
       {/* Post section */}
       <div className="mt-5 space-y-5">
-        <Post/>
-
+        {posts.map((item)=> <Post/>)}
       </div>
     </div>
   );
