@@ -1,11 +1,11 @@
 import React from "react";
 import { navigationMenu } from "./SidebarNavigation";
 import { Avatar, Divider } from "@mui/material";
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Fade from '@mui/material/Fade';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Fade from "@mui/material/Fade";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Sidebar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -16,16 +16,19 @@ const Sidebar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   return (
-    <div className="card h-sreen flex flex-col justify-between py-5 ">
+    <div className="card h-screen flex flex-col justify-between py-5 border-r border-gray-300">
       <div className="space-y-8 pl-5">
         <div className="">
           <span className="logo font-bold text-xl">CineGram</span>
         </div>
         <div className="space-y-8">
-          {navigationMenu.map((item,index) => (
-            <div key={index} className="cursor-pointer flex space-x-3 items-center ">
+          {navigationMenu.map((item, index) => (
+            <div
+              key={index}
+              className="cursor-pointer flex space-x-3 items-center "
+            >
               {item.icon}
               <p className="text-xl"> {item.title} </p>
             </div>
@@ -48,7 +51,7 @@ const Sidebar = () => {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
               >
-                <MoreVertIcon/>
+                <MoreVertIcon />
               </Button>
               <Menu
                 id="fade-menu"

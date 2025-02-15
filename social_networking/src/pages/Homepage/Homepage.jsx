@@ -28,7 +28,7 @@ function Homepage() {
           item
           className="px-5 flex justify-center "
           xs={12}
-          lg={location.pathname === "/"}
+          lg={6}
         >
           <Routes>
             <Route path ="/" element ={<MiddlePart/>} />
