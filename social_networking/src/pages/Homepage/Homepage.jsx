@@ -11,19 +11,16 @@ import HomeRight from "../components/HomeRight/HomeRight";
 function Homepage() {
   const location = useLocation();
   return (
-    <div className="px-20">
-      <Grid container spacing={2} justifyContent="space-between">
+    <div className="flex h-screen">
         {/* Sidebar (Left Section) */}
-
-        <Grid item xs={0} lg={3}>
-          <div className="sticky top-0">
             <Sidebar />
-          </div>
-        </Grid>
 
+        {/* Scrollable */}
+        <div className="ml-[250px] flex-1 overflow-y-auto h-screen px-10">
+        <Grid container spacing={2} justifyContent="space-between">
         {/* Middle Content (Center Section) */}
 
-        <Grid item className="px-5 flex justify-center " xs={12} lg={6}>
+        <Grid item className="px-5 flex justify-center w-full lg:w-2/3">
           <Routes>
             <Route path="/" element={<MiddlePart />} />
             <Route path="/reels" element={<Reels />} />
@@ -35,13 +32,12 @@ function Homepage() {
         {/* HomeRight (Right Section) */}
 
         {location.pathname === "/" && (
-          <Grid item lg={3} className="relative">
-            <div className="sticky top-0 w-full">
+          <Grid item className="w-1/3">
               <HomeRight />
-            </div>
           </Grid>
         )}
       </Grid>
+    </div>
     </div>
   );
 }

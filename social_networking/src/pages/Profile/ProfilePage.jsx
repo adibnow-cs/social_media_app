@@ -22,7 +22,7 @@ const ProfilePage = () => {
 
   // access ID using useParams
   return (
-    <div className="py-10 w-[70%]">
+    <div className="w-full max-w-3xl mx-auto">
       {/* Profile section*/}
       <div className="rounded-md">
         {/* Cover Image */}

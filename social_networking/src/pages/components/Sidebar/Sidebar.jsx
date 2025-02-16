@@ -18,7 +18,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="card h-screen flex flex-col justify-between py-5 border-r border-gray-300">
+    <div className="fixed top-0 left-0 h-screen w-[250px] bg-white border-r border-gray-300 flex flex-col justify-between py-5">
       <div className="space-y-8 pl-5">
         <div className="">
           <span className="logo font-bold text-xl">CineGram</span>
