@@ -1,9 +1,21 @@
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Box, Button, Tab, Tabs } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 
+const tabs = [
+  { value: "post", name: "Post" },
+  { value: "reels", name: "Reels" },
+  { value: "saved", name: "Saved" },
+  { value: "repost", name: "Repost" },
+];
 const ProfilePage = () => {
   const { id } = useParams();
+  const [value, setValue] = React.useState("post");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   // access ID using useParams
   return (
     <div className="py-10 w-[70%]">
@@ -47,10 +59,20 @@ const ProfilePage = () => {
               creativity, sharing insights, and embracing new experiences. 🎬🚀
             </p>
           </div>
+          <section>
+            <Box sx={{ width: "100%" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="wrapped label tabs example"
+              >
+                {tabs.map((item) => (
+                  <Tab value={item.value} label={item.name} wrapped />
+                ))}
+              </Tabs>
+            </Box>
+          </section>
         </div>
-        <section>
-          
-        </section>
       </div>
     </div>
   );
