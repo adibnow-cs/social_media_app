@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Tab, Tabs } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
+import Post from "../components/Post/Post";
 
 const tabs = [
   { value: "post", name: "Post" },
@@ -8,6 +9,9 @@ const tabs = [
   { value: "saved", name: "Saved" },
   { value: "repost", name: "Repost" },
 ];
+
+const posts = [1, 1, 1, 1];
+
 const ProfilePage = () => {
   const { id } = useParams();
   const [value, setValue] = React.useState("post");
@@ -60,17 +64,33 @@ const ProfilePage = () => {
             </p>
           </div>
           <section>
-            <Box sx={{ width: "100%" }}>
+            <Box
+              sx={{ width: "100%", borderBottom: 1, borderColor: "divider" }}
+            >
               <Tabs
                 value={value}
                 onChange={handleChange}
                 aria-label="wrapped label tabs example"
               >
                 {tabs.map((item) => (
-                  <Tab value={item.value} label={item.name} wrapped />
+                  <Tab key={item.value} value={item.value} label={item.name} wrapped />
                 ))}
               </Tabs>
             </Box>
+            <div className="flex justify-center">
+              {value === "post" && (
+                <div className="space-y-5 w-[70%] my-10">
+                  {posts.map((item, index) => (
+                    <div
+                      key={index}
+                      className="border border-slate-500 rounded-md"
+                    >
+                      <Post />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </section>
         </div>
       </div>
