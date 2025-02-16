@@ -12,7 +12,9 @@ const tabs = [
 ];
 
 const posts = [1, 1, 1, 1];
-const reels =[1,1,1,1]
+const reels = [1, 1, 1, 1];
+const savedPosts = [1, 1, 1, 1];
+
 const ProfilePage = () => {
   const { id } = useParams();
   const [value, setValue] = React.useState("post");
@@ -21,10 +23,9 @@ const ProfilePage = () => {
     setValue(newValue);
   };
 
-  // access ID using useParams
   return (
     <div className="w-full max-w-3xl mx-auto">
-      {/* Profile section*/}
+      {/* Profile Section */}
       <div className="rounded-md">
         {/* Cover Image */}
         <div className="h-[15rem]">
@@ -65,7 +66,7 @@ const ProfilePage = () => {
             </p>
           </div>
 
-      {/* Tabs Section */}
+          {/* Tabs Section */}
           <section>
             <Box
               sx={{ width: "100%", borderBottom: 1, borderColor: "divider" }}
@@ -85,9 +86,18 @@ const ProfilePage = () => {
                 ))}
               </Tabs>
             </Box>
-            <Card sx={{ display: "flex", justifyContent: "center", padding: "20px", marginTop: "20px" }}>              
 
-                             {value === "post" && (
+            {/* Content Section */}
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "20px",
+                marginTop: "20px",
+              }}
+            >
+              {value === "post" && (
                 <div className="space-y-5 w-[70%] my-10">
                   {posts.map((item, index) => (
                     <div
@@ -98,14 +108,35 @@ const ProfilePage = () => {
                     </div>
                   ))}
                 </div>
-                             )}
-                {value==="reels" &&( 
-                <div className="flex flex-wrap">
-                  {reels.map((item, index) => <UserReelCard/>
-                )}
+              )}
 
+              {value === "reels" && (
+                <div className="space-y-5 w-[70%] my-10">
+                  {reels.map((item, index) => (
+                    <div
+                      key={index}
+                    >
+                      <UserReelCard />
+                    </div>
+                  ))}
                 </div>
               )}
+
+              {value === "saved" && (
+                <div className="space-y-5 w-[70%] my-10">
+                  {savedPosts.map((item, index) => (
+                    <div
+                      key={index}
+                      className="border border-slate-500 rounded-md"
+                    >
+                      <Post />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div>Repost</div>
+
+
             </Card>
           </section>
         </div>
