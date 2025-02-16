@@ -1,7 +1,8 @@
-import { Avatar, Box, Button, Tab, Tabs } from "@mui/material";
+import { Avatar, Box, Button, Card, Tab, Tabs } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 import Post from "../components/Post/Post";
+import UserReelCard from "../components/Reels/UserReelCard";
 
 const tabs = [
   { value: "post", name: "Post" },
@@ -11,7 +12,7 @@ const tabs = [
 ];
 
 const posts = [1, 1, 1, 1];
-
+const reels =[1,1,1,1]
 const ProfilePage = () => {
   const { id } = useParams();
   const [value, setValue] = React.useState("post");
@@ -63,6 +64,8 @@ const ProfilePage = () => {
               creativity, sharing insights, and embracing new experiences. 🎬🚀
             </p>
           </div>
+
+      {/* Tabs Section */}
           <section>
             <Box
               sx={{ width: "100%", borderBottom: 1, borderColor: "divider" }}
@@ -73,12 +76,18 @@ const ProfilePage = () => {
                 aria-label="wrapped label tabs example"
               >
                 {tabs.map((item) => (
-                  <Tab key={item.value} value={item.value} label={item.name} wrapped />
+                  <Tab
+                    key={item.value}
+                    value={item.value}
+                    label={item.name}
+                    wrapped
+                  />
                 ))}
               </Tabs>
             </Box>
-            <div className="flex justify-center">
-              {value === "post" && (
+            <Card sx={{ display: "flex", justifyContent: "center", padding: "20px", marginTop: "20px" }}>              
+
+                             {value === "post" && (
                 <div className="space-y-5 w-[70%] my-10">
                   {posts.map((item, index) => (
                     <div
@@ -89,8 +98,15 @@ const ProfilePage = () => {
                     </div>
                   ))}
                 </div>
+                             )}
+                {value==="reels" &&( 
+                <div className="flex flex-wrap">
+                  {reels.map((item, index) => <UserReelCard/>
+                )}
+
+                </div>
               )}
-            </div>
+            </Card>
           </section>
         </div>
       </div>
